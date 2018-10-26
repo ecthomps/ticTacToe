@@ -1,0 +1,43 @@
+body{
+    background-color: #037575;
+    font-family: 'Permanent Marker', sans-serif, cursive;
+    color: #fff;
+}
+
+/* header section */
+header{
+    margin-top: 50px;
+}
+input#comp.radioButton{
+    margin-left: 7px;
+}
+.container{
+    margin: 0 auto;
+    text-align: center;
+}
+.controls{
+    margin-top: 3%;
+}
+.radioButton{
+    margin-left: 40px;
+}
+
+/* main section */
+#main{
+    margin-top: 4%;
+}
+table{
+    table-layout: fixed;
+    margin: 0 auto;
+}
+.row>td{
+    font-size: 35px;
+    border: solid 1px white;
+    width: 100px;
+    height: 75px;
+    text-align: center;
+    vertical-align: top;
+    line-height: 65px;
+    display: inline-block;
+    margin-top: -4px;
+}

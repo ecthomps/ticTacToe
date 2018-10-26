@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tic Tac Toe</title>
+
+    <!-- custom css -->
+    <link rel="stylesheet" href="css/styles.css"> 
+    
+    <!-- google font -->
+    <link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet">
+    
+</head>
+<body>
+    
+    <header class="container">
+        <h1>Tic Tac Toe</h1>
+        <div class="controls">
+            <h3>Play against</h3>
+            <input class="radioButton" type="radio" name="player" 
+                   id="comp" value="Computer" checked>Computer
+            <input class="radioButton" type="radio" name="player" 
+                   id="human" value="Human">Human
+        </div>
+    </header><!-- end of header -->
+
+    <section id="main">
+        <table class="container boardContainer">
+            <!-- row 1 -->
+            <tr class="row">
+                <td id="square1" class="tile">X</td>
+                <td id="square2" class="tile">X</td>
+                <td id="square3" class="tile">X</td>
+            </tr>
+            <!-- row 2 -->
+            <tr class="row">
+                <td id="square4" class="tile">X</td>
+                <td id="square5" class="tile">X</td>
+                <td id="square6" class="tile">X</td>
+            </tr>
+            <!-- row 3 -->
+            <tr class="row">
+                <td id="square7" class="tile">X</td>
+                <td id="square8" class="tile">X</td>
+                <td id="square9" class="tile">X</td>
+            </tr>
+        </table><!-- end of table-->
+    </section><!-- end of main section-->
+
+</body>
+</html>

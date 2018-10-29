@@ -16,7 +16,13 @@
 <body>
     
     <header class="container">
-        <h1>Tic Tac Toe</h1>
+        <h1>Tic Tac Toe</h1>    
+        <span id="timer">
+                <span id="hours"></span>
+                <span id="mins"></span>
+                <span id="secs"></span>
+        </span>
+        
         <div class="controls">
             <h3>Play against</h3>
             <input class="radioButton" type="radio" name="player" 
@@ -47,7 +53,17 @@
                 <td id="square9" class="tile">X</td>
             </tr>
         </table><!-- end of table-->
+
+        <!-- shows whose turn it is -->
+        <span id="playerTurn"></span>
+
+        <div class="container">
+            <input type="button" class="btnCtrl" id="startBtn" value="Start/Restart">
+            <input type="button" class="btnCtrl" id="playAgainBtn" value="Play Again">
+        </div>       
     </section><!-- end of main section-->
 
+    <!-- custom js -->
+    <script src="js/script.js"></script>
 </body>
 </html>

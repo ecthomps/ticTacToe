@@ -5,8 +5,58 @@
 // make p -> X when pVc
 // use Math.Random() to choose who goes first
 
+var hrs = 0, mins = 0, secs = 0;
+var count = 0;
+
+var pvpTurn = Math.floor(Math.random() * (1-0+1)) + 0;
+var pvcTurn = Math.floor(Math.random() * (1-0+1)) + 0;
+var temp ="", temp2 ="";
+var isGameOver = false;
+
 var $ = function(id){
     return document.getElementById(id);
+}
+
+function checkGameMode(){
+    if($("pVc").checked){
+        playerVcomp();
+    }else if($("pVp").checked){
+        playerVplayer();
+    }
+}
+
+//toggle between X or O for each player's turn
+function toggleXorO(){
+    let letter = 'A';
+    if(pvpTurn == 1){
+        $("playerTurn").innerHTML = "Player 0's Turn";
+        pvpTurn = 0;
+        letter = 'X';
+        return letter;
+    } else if(pvpTurn == 0){
+        $("playerTurn").innerHTML = "Player X's Turn";
+        pvpTurn = 1;
+        letter = 'O';
+        return letter;
+    }
+}
+
+function playerVplayer(){
+    let whoPlaying = toggleXorO;
+
+    $("square1").onclick = function(){gameWinner(); $("square1").innerHTML = whoPlaying; $("square1").style.pointerEvents = 'none';}
+    $("square2").onclick = function(){gameWinner(); $("square2").innerHTML = whoPlaying; $("square2").style.pointerEvents = 'none';}
+    $("square3").onclick = function(){gameWinner(); $("square3").innerHTML = whoPlaying; $("square3").style.pointerEvents = 'none';}
+    $("square4").onclick = function(){gameWinner(); $("square4").innerHTML = whoPlaying; $("square4").style.pointerEvents = 'none';}
+    $("square5").onclick = function(){gameWinner(); $("square5").innerHTML = whoPlaying; $("square5").style.pointerEvents = 'none';}
+    $("square6").onclick = function(){gameWinner(); $("square6").innerHTML = whoPlaying; $("square6").style.pointerEvents = 'none';}
+    $("square7").onclick = function(){gameWinner(); $("square7").innerHTML = whoPlaying; $("square7").style.pointerEvents = 'none';}
+    $("square8").onclick = function(){gameWinner(); $("square8").innerHTML = whoPlaying; $("square8").style.pointerEvents = 'none';}
+    $("square9").onclick = function(){gameWinner(); $("square9").innerHTML = whoPlaying; $("square9").style.pointerEvents = 'none';}
+}
+
+function playerVcomp(){
+
 }
 
 var startGame = function(){   
@@ -14,9 +64,6 @@ var startGame = function(){
     $('secs').innerHTML = "00";
     startTimer();
 }
-
-var hrs = 0, mins = 0, secs = 0;
-var count = 0; 
 
 function startTimer(){
     setTimeout(function(){
@@ -49,5 +96,6 @@ function startTimer(){
 }
 
 window.onload = function(){
+    checkGameMode();
     $("startBtn").onclick = startGame;
 }

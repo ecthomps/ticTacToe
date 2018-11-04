@@ -1,10 +1,5 @@
 "use strict";
 
-// make sure board is clear at start of each game
-// check if pVp or pVc
-// make p -> X when pVc
-// use Math.Random() to choose who goes first
-
 var hrs = 0, mins = 0, secs = 0;
 var count = 0;
 
@@ -19,7 +14,6 @@ var $ = function(id){
 
 function checkGameMode(){
     if($("pVc").checked){
-        // pvc = true;
         $("playerTurn").innerHTML = "";
         playerVcomp();
     }else if($("pVp").checked){
@@ -173,9 +167,15 @@ function disableallCells() {
     $("square7").style.pointerEvents = 'none', $("square8").style.pointerEvents = 'none', $("square9").style.pointerEvents = 'none';
 }
 
+function enableallCells(){
+    $("square1").style.pointerEvents = "all"; $("square2").style.pointerEvents = "all"; $("square3").style.pointerEvents = "all"; 
+    $("square4").style.pointerEvents = "all"; $("square5").style.pointerEvents = "all"; $("square6").style.pointerEvents = "all"; 
+    $("square7").style.pointerEvents = "all"; $("square8").style.pointerEvents = "all"; $("square9").style.pointerEvents = "all"; 
+}
+
 var startGame = function(){ 
     isGameOver = false;
-    checkGameMode();
+    enableallCells(); checkGameMode();
     $('hours').innerHTML = '00:'; $('mins').innerHTML = '00:'; $('secs').innerHTML = "00";
     startTimer();
 }
@@ -190,9 +190,7 @@ var reset = function(){
     $("square7").innerHTML = ""; $("square8").innerHTML = "", $("square9").innerHTML = "";
 
     //enable cell pointerEvents
-    $("square1").style.pointerEvents = "all"; $("square2").style.pointerEvents = "all"; $("square3").style.pointerEvents = "all"; 
-    $("square4").style.pointerEvents = "all"; $("square5").style.pointerEvents = "all"; $("square6").style.pointerEvents = "all"; 
-    $("square7").style.pointerEvents = "all"; $("square8").style.pointerEvents = "all"; $("square9").style.pointerEvents = "all"; 
+    enableallCells();
     
     //resetTimer
     isGameOver = false; resetTime = true;
@@ -204,7 +202,7 @@ var reset = function(){
 function startTimer(){
     if (isGameOver){return;}        
 
-    if(resetTime){ clearTimeout(timex);}
+    if (resetTime){ clearTimeout(timex);}
     
     timex = setTimeout(function(){
         secs++;
@@ -236,7 +234,7 @@ function startTimer(){
 }
 
 window.onload = function(){
-    printOnlyX();
+    disableallCells(); printOnlyX();
     $("startBtn").onclick = startGame;
     $("startBtn").ondblclick = reset;
     $("playAgainBtn").onclick = reset;

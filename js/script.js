@@ -10,8 +10,8 @@ var count = 0;
 
 var pvpTurn = Math.floor(Math.random() * (1 - 0 + 1)) + 0;
 var pvcTurn = Math.floor(Math.random() * (1 - 0 + 1)) + 0;
-var whoPlaying = "", temp2 ="";
-var isGameOver = false;
+var whoPlaying = "", timex = "", pvp = false, pvc = false, resetTime = false;
+var isGameWon = false, isGameDrawn = false, isGameOver = false;
 
 var $ = function(id){
     return document.getElementById(id);
@@ -19,15 +19,18 @@ var $ = function(id){
 
 function checkGameMode(){
     if($("pVc").checked){
+        // pvc = true;
+        $("playerTurn").innerHTML = "";
         playerVcomp();
     }else if($("pVp").checked){
+        pvp = true;
         playerVplayer();
     }
 }
 
 //toggle between X or O for each player's turn
 function toggleXorO(){
-    var letter = 'A';
+    let letter = "";
     if(pvpTurn == 1){
         $("playerTurn").innerHTML = "Player 0's Turn";
         pvpTurn = 0;
@@ -38,36 +41,172 @@ function toggleXorO(){
         pvpTurn = 1;
         letter = 'O';
         return letter;
-    }
+    }        
 }
 
 function playerVplayer(){
-    whoPlaying = toggleXorO();
+    if(pvp)
+        whoPlaying = toggleXorO();
 
-    $("square1").addEventListener("click", function(){$("square1").innerHTML = whoPlaying; $("square1").style.pointerEvents = 'none';});
-    $("square2").addEventListener("click", function(){$("square2").innerHTML = whoPlaying; $("square2").style.pointerEvents = 'none';});
-    $("square3").addEventListener("click", function(){$("square3").innerHTML = whoPlaying; $("square3").style.pointerEvents = 'none';});
-    $("square4").addEventListener("click", function(){$("square4").innerHTML = whoPlaying; $("square4").style.pointerEvents = 'none';});
-    $("square5").addEventListener("click", function(){$("square5").innerHTML = whoPlaying; $("square5").style.pointerEvents = 'none';});
-    $("square6").addEventListener("click", function(){$("square6").innerHTML = whoPlaying; $("square6").style.pointerEvents = 'none';});
-    $("square7").addEventListener("click", function(){$("square7").innerHTML = whoPlaying; $("square7").style.pointerEvents = 'none';});
-    $("square8").addEventListener("click", function(){$("square8").innerHTML = whoPlaying; $("square8").style.pointerEvents = 'none';});
-    $("square9").addEventListener("click", function(){$("square9").innerHTML = whoPlaying; $("square9").style.pointerEvents = 'none';});
+    $("square1").addEventListener("click", function(){$("square1").innerHTML = whoPlaying; checkForWinner(); $("square1").style.pointerEvents = 'none';});
+    $("square2").addEventListener("click", function(){$("square2").innerHTML = whoPlaying; checkForWinner(); $("square2").style.pointerEvents = 'none';});
+    $("square3").addEventListener("click", function(){$("square3").innerHTML = whoPlaying; checkForWinner(); $("square3").style.pointerEvents = 'none';});
+    $("square4").addEventListener("click", function(){$("square4").innerHTML = whoPlaying; checkForWinner(); $("square4").style.pointerEvents = 'none';});
+    $("square5").addEventListener("click", function(){$("square5").innerHTML = whoPlaying; checkForWinner(); $("square5").style.pointerEvents = 'none';});
+    $("square6").addEventListener("click", function(){$("square6").innerHTML = whoPlaying; checkForWinner(); $("square6").style.pointerEvents = 'none';});
+    $("square7").addEventListener("click", function(){$("square7").innerHTML = whoPlaying; checkForWinner(); $("square7").style.pointerEvents = 'none';});
+    $("square8").addEventListener("click", function(){$("square8").innerHTML = whoPlaying; checkForWinner(); $("square8").style.pointerEvents = 'none';});
+    $("square9").addEventListener("click", function(){$("square9").innerHTML = whoPlaying; checkForWinner(); $("square9").style.pointerEvents = 'none';}); 
 }
 
 function playerVcomp(){
+    if(pvcTurn == 1){
+        checkForWinner();
+    } else if(pvcTurn == 0){
+        checkForEmptyCells();
+        checkForWinner();
+        pvcTurn = 1;
+        checkGameMode();
+    }
+}
 
+//print X only for pvc
+function printOnlyX(){
+    $("square1").addEventListener("click", function(){if($("pVp").checked) return; $("square1").innerHTML = 'X'; $("square1").pointerEvents = 'none'; pvcTurn = 0; checkForWinner(); if(!isGameOver) checkForEmptyCells();});
+    $("square2").addEventListener("click", function(){if($("pVp").checked) return; $("square2").innerHTML = 'X'; $("square2").pointerEvents = 'none'; pvcTurn = 0; checkForWinner(); if(!isGameOver) checkForEmptyCells();});
+    $("square3").addEventListener("click", function(){if($("pVp").checked) return; $("square3").innerHTML = 'X'; $("square3").pointerEvents = 'none'; pvcTurn = 0; checkForWinner(); if(!isGameOver) checkForEmptyCells();});
+    $("square4").addEventListener("click", function(){if($("pVp").checked) return; $("square4").innerHTML = 'X'; $("square4").pointerEvents = 'none'; pvcTurn = 0; checkForWinner(); if(!isGameOver) checkForEmptyCells();});
+    $("square5").addEventListener("click", function(){if($("pVp").checked) return; $("square5").innerHTML = 'X'; $("square5").pointerEvents = 'none'; pvcTurn = 0; checkForWinner(); if(!isGameOver) checkForEmptyCells();});
+    $("square6").addEventListener("click", function(){if($("pVp").checked) return; $("square6").innerHTML = 'X'; $("square6").pointerEvents = 'none'; pvcTurn = 0; checkForWinner(); if(!isGameOver) checkForEmptyCells();});
+    $("square7").addEventListener("click", function(){if($("pVp").checked) return; $("square7").innerHTML = 'X'; $("square7").pointerEvents = 'none'; pvcTurn = 0; checkForWinner(); if(!isGameOver) checkForEmptyCells();});
+    $("square8").addEventListener("click", function(){if($("pVp").checked) return; $("square8").innerHTML = 'X'; $("square8").pointerEvents = 'none'; pvcTurn = 0; checkForWinner(); if(!isGameOver) checkForEmptyCells();});
+    $("square9").addEventListener("click", function(){if($("pVp").checked) return; $("square9").innerHTML = 'X'; $("square9").pointerEvents = 'none'; pvcTurn = 0; checkForWinner(); if(!isGameOver) checkForEmptyCells();});
+}
+
+function checkForEmptyCells(){
+    let rNmumber = Math.floor((Math.random() * 9) + 1);
+
+    var sqr1 = $("square1").innerHTML, sqr2 = $("square2").innerHTML, sqr3 = $("square3").innerHTML;
+    var sqr4 = $("square4").innerHTML, sqr5 = $("square5").innerHTML, sqr6 = $("square6").innerHTML;
+    var sqr7 = $("square7").innerHTML, sqr8 = $("square8").innerHTML, sqr9 = $("square9").innerHTML;
+
+    if(rNmumber == 1 && sqr1 == ""){
+        $("square1").innerHTML = "0"; $("square1").pointerEvents = 'none';
+    } else if(rNmumber == 2 && sqr2 == ""){
+        $("square2").innerHTML = "0"; $("square2").pointerEvents = 'none';
+    } else if(rNmumber == 3 && sqr3 == ""){
+        $("square3").innerHTML = "0"; $("square3").pointerEvents = 'none';
+    } else if(rNmumber == 4 && sqr4 == ""){
+        $("square4").innerHTML = "0"; $("square4").pointerEvents = 'none';
+    } else if(rNmumber == 5 && sqr5 == ""){
+        $("square5").innerHTML = "0"; $("square5").pointerEvents = 'none';
+    } else if(rNmumber == 6 && sqr6 == ""){
+        $("square6").innerHTML = "0"; $("square6").pointerEvents = 'none';
+    } else if(rNmumber == 7 && sqr7 == ""){
+        $("square7").innerHTML = "0"; $("square7").pointerEvents = 'none';
+    } else if(rNmumber == 8 && sqr8 == ""){
+        $("square8").innerHTML = "0"; $("square8").pointerEvents = 'none';
+    } else if(rNmumber == 9 && sqr9 == ""){
+        $("square9").innerHTML = "0"; $("square9").pointerEvents = 'none';
+    } else{ checkForEmptyCells();}
+    
+    checkForWinner();
+    pvcTurn = 1;
+}
+
+function isWonOrDrawn(winner){
+    isGameOver = true;
+    if(isGameWon){
+        alert("Player " + winner + " wins!!!");
+        disableallCells();
+        $("playerTurn").style.display = 'none';
+        $("playAgainBtn").style.display = 'initial'; 
+    } else if(isGameDrawn){
+        alert("we have a tie");
+        disableallCells();
+        $("playerTurn").style.display = 'none';
+        $("playAgainBtn").style.display = 'initial'; 
+    }      
+}
+
+//checks rows, cols, and diags to determine winner
+function checkForWinner(){
+    if (isGameOver)
+        return;
+
+    var sqr1 = $("square1").innerHTML, sqr2 = $("square2").innerHTML, sqr3 = $("square3").innerHTML;
+    var sqr4 = $("square4").innerHTML, sqr5 = $("square5").innerHTML, sqr6 = $("square6").innerHTML;
+    var sqr7 = $("square7").innerHTML, sqr8 = $("square8").innerHTML, sqr9 = $("square9").innerHTML;
+
+    //check rows for win
+    if(((sqr1=="X") || (sqr1=="O")) && ((sqr1 == sqr2) && (sqr2 == sqr3))){
+        isGameWon = true; isGameOver=true; isWonOrDrawn(sqr1);  
+    } else if(((sqr4=="X") || (sqr4=="O")) && ((sqr4 == sqr5) && (sqr5 == sqr6))){
+        isGameWon = true; isGameOver=true; isWonOrDrawn(sqr4); 
+    } else if(((sqr7=="X") || (sqr7=="O")) && ((sqr7 == sqr8) && (sqr8 == sqr9))){
+        isGameWon = true; isGameOver=true; isWonOrDrawn(sqr7);
+    }
+    //check cols for win
+    else if(((sqr1=="X") || (sqr1=="O")) && ((sqr1 == sqr4) && (sqr4 == sqr7))){
+        isGameWon = true; isGameOver=true; isWonOrDrawn(sqr1);
+    } else if(((sqr2=="X") || (sqr2=="O")) && ((sqr2 == sqr5) && (sqr5 == sqr8))){
+        isGameWon = true; isGameOver=true; isWonOrDrawn(sqr2); 
+    } else if(((sqr3=="X") || (sqr3=="O")) && ((sqr3 == sqr6) && (sqr6 == sqr9))){
+        isGameWon = true; isGameOver=true; isWonOrDrawn(sqr3);
+    }
+    //check diags for winner
+    else if(((sqr1=="X") || (sqr1=="O")) && ((sqr1 == sqr5) && (sqr5 == sqr9))){
+        isGameWon = true; isGameOver=true; isWonOrDrawn(sqr1); 
+    } else if(((sqr3=="X") || (sqr3=="O")) && ((sqr3 == sqr5) && (sqr5 == sqr7))){
+        isGameWon = true; isGameOver=true; isWonOrDrawn(sqr3); 
+    }
+    //draw
+    else if(sqr1 != "" && sqr2 != "" && sqr3 != "" && sqr4 != "" && sqr5 != "" && 
+            sqr6 != "" && sqr7 != "" && sqr8 != "" && sqr9 != ""){
+        isGameDrawn = true; isGameOver=true; isWonOrDrawn(sqr1); 
+    } 
+}
+
+function disableallCells() {
+    $("square1").style.pointerEvents = 'none', $("square2").style.pointerEvents = 'none', $("square3").style.pointerEvents = 'none';
+    $("square4").style.pointerEvents = 'none', $("square5").style.pointerEvents = 'none', $("square6").style.pointerEvents = 'none';
+    $("square7").style.pointerEvents = 'none', $("square8").style.pointerEvents = 'none', $("square9").style.pointerEvents = 'none';
 }
 
 var startGame = function(){ 
-    checkGameMode();  
-    $('hours', 'mins').innerHTML = '00:';
-    $('secs').innerHTML = "00";
+    isGameOver = false;
+    checkGameMode();
+    $('hours').innerHTML = '00:'; $('mins').innerHTML = '00:'; $('secs').innerHTML = "00";
+    startTimer();
+}
+
+var reset = function(){
+    $("playAgainBtn").style.display = 'none'; 
+    $("playerTurn").style.display = 'initial';
+
+    // clear cell innerHTML
+    $("square1").innerHTML = "", $("square2").innerHTML = "", $("square3").innerHTML = "";
+    $("square4").innerHTML = "", $("square5").innerHTML = "", $("square6").innerHTML = "";
+    $("square7").innerHTML = ""; $("square8").innerHTML = "", $("square9").innerHTML = "";
+
+    //enable cell pointerEvents
+    $("square1").style.pointerEvents = "all"; $("square2").style.pointerEvents = "all"; $("square3").style.pointerEvents = "all"; 
+    $("square4").style.pointerEvents = "all"; $("square5").style.pointerEvents = "all"; $("square6").style.pointerEvents = "all"; 
+    $("square7").style.pointerEvents = "all"; $("square8").style.pointerEvents = "all"; $("square9").style.pointerEvents = "all"; 
+    
+    //resetTimer
+    isGameOver = false; resetTime = true;
+    hrs = 0, mins = 0, secs = 0;
+    $('hours').innerHTML = '00:'; $('mins').innerHTML = '00:'; $('secs').innerHTML = "00";
     startTimer();
 }
 
 function startTimer(){
-    setTimeout(function(){
+    if (isGameOver){return;}        
+
+    if(resetTime){ clearTimeout(timex);}
+    
+    timex = setTimeout(function(){
         secs++;
         if(secs > 59){
             secs = 0;
@@ -97,5 +236,8 @@ function startTimer(){
 }
 
 window.onload = function(){
+    printOnlyX();
     $("startBtn").onclick = startGame;
+    $("startBtn").ondblclick = reset;
+    $("playAgainBtn").onclick = reset;
 }

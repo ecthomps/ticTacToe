@@ -85,26 +85,26 @@ function checkForEmptyCells(){
     var sqr7 = $("square7").innerHTML, sqr8 = $("square8").innerHTML, sqr9 = $("square9").innerHTML;
 
     if(rNmumber == 1 && sqr1 == ""){
-        $("square1").innerHTML = "0"; $("square1").pointerEvents = 'none';
+        $("square1").innerHTML = "0"; checkForWinner(); $("square1").pointerEvents = 'none';
     } else if(rNmumber == 2 && sqr2 == ""){
-        $("square2").innerHTML = "0"; $("square2").pointerEvents = 'none';
+        $("square2").innerHTML = "0"; checkForWinner(); $("square2").pointerEvents = 'none';
     } else if(rNmumber == 3 && sqr3 == ""){
-        $("square3").innerHTML = "0"; $("square3").pointerEvents = 'none';
+        $("square3").innerHTML = "0"; checkForWinner(); $("square3").pointerEvents = 'none';
     } else if(rNmumber == 4 && sqr4 == ""){
-        $("square4").innerHTML = "0"; $("square4").pointerEvents = 'none';
+        $("square4").innerHTML = "0"; checkForWinner(); $("square4").pointerEvents = 'none';
     } else if(rNmumber == 5 && sqr5 == ""){
-        $("square5").innerHTML = "0"; $("square5").pointerEvents = 'none';
+        $("square5").innerHTML = "0"; checkForWinner(); $("square5").pointerEvents = 'none';
     } else if(rNmumber == 6 && sqr6 == ""){
-        $("square6").innerHTML = "0"; $("square6").pointerEvents = 'none';
+        $("square6").innerHTML = "0"; checkForWinner(); $("square6").pointerEvents = 'none';
     } else if(rNmumber == 7 && sqr7 == ""){
-        $("square7").innerHTML = "0"; $("square7").pointerEvents = 'none';
+        $("square7").innerHTML = "0"; checkForWinner(); $("square7").pointerEvents = 'none';
     } else if(rNmumber == 8 && sqr8 == ""){
-        $("square8").innerHTML = "0"; $("square8").pointerEvents = 'none';
+        $("square8").innerHTML = "0"; checkForWinner(); $("square8").pointerEvents = 'none';
     } else if(rNmumber == 9 && sqr9 == ""){
-        $("square9").innerHTML = "0"; $("square9").pointerEvents = 'none';
+        $("square9").innerHTML = "0"; checkForWinner(); $("square9").pointerEvents = 'none';
     } else{ checkForEmptyCells();}
     
-    checkForWinner();
+    // checkForWinner();
     pvcTurn = 1;
 }
 
@@ -112,12 +112,12 @@ function isWonOrDrawn(winner){
     isGameOver = true;
     if(isGameWon){
         alert("Player " + winner + " wins!!!");
-        disableallCells();
+        disableAllCells();
         $("playerTurn").style.display = 'none';
         $("playAgainBtn").style.display = 'initial'; 
     } else if(isGameDrawn){
         alert("we have a tie");
-        disableallCells();
+        disableAllCells();
         $("playerTurn").style.display = 'none';
         $("playAgainBtn").style.display = 'initial'; 
     }      
@@ -134,40 +134,40 @@ function checkForWinner(){
 
     //check rows for win
     if(((sqr1=="X") || (sqr1=="O")) && ((sqr1 == sqr2) && (sqr2 == sqr3))){
-        isGameWon = true; isGameOver=true; isWonOrDrawn(sqr1);  
+        isGameWon = true; isWonOrDrawn(sqr1);  
     } else if(((sqr4=="X") || (sqr4=="O")) && ((sqr4 == sqr5) && (sqr5 == sqr6))){
-        isGameWon = true; isGameOver=true; isWonOrDrawn(sqr4); 
+        isGameWon = true; isWonOrDrawn(sqr4); 
     } else if(((sqr7=="X") || (sqr7=="O")) && ((sqr7 == sqr8) && (sqr8 == sqr9))){
-        isGameWon = true; isGameOver=true; isWonOrDrawn(sqr7);
+        isGameWon = true; isWonOrDrawn(sqr7);
     }
     //check cols for win
     else if(((sqr1=="X") || (sqr1=="O")) && ((sqr1 == sqr4) && (sqr4 == sqr7))){
-        isGameWon = true; isGameOver=true; isWonOrDrawn(sqr1);
+        isGameWon = true; isWonOrDrawn(sqr1);
     } else if(((sqr2=="X") || (sqr2=="O")) && ((sqr2 == sqr5) && (sqr5 == sqr8))){
-        isGameWon = true; isGameOver=true; isWonOrDrawn(sqr2); 
+        isGameWon = true; isWonOrDrawn(sqr2); 
     } else if(((sqr3=="X") || (sqr3=="O")) && ((sqr3 == sqr6) && (sqr6 == sqr9))){
-        isGameWon = true; isGameOver=true; isWonOrDrawn(sqr3);
+        isGameWon = true; isWonOrDrawn(sqr3);
     }
     //check diags for winner
     else if(((sqr1=="X") || (sqr1=="O")) && ((sqr1 == sqr5) && (sqr5 == sqr9))){
-        isGameWon = true; isGameOver=true; isWonOrDrawn(sqr1); 
+        isGameWon = true; isWonOrDrawn(sqr1); 
     } else if(((sqr3=="X") || (sqr3=="O")) && ((sqr3 == sqr5) && (sqr5 == sqr7))){
-        isGameWon = true; isGameOver=true; isWonOrDrawn(sqr3); 
+        isGameWon = true; isWonOrDrawn(sqr3); 
     }
     //draw
     else if(sqr1 != "" && sqr2 != "" && sqr3 != "" && sqr4 != "" && sqr5 != "" && 
             sqr6 != "" && sqr7 != "" && sqr8 != "" && sqr9 != ""){
-        isGameDrawn = true; isGameOver=true; isWonOrDrawn(sqr1); 
+        isGameDrawn = true; isWonOrDrawn(sqr1); 
     } 
 }
 
-function disableallCells() {
+function disableAllCells() {
     $("square1").style.pointerEvents = 'none', $("square2").style.pointerEvents = 'none', $("square3").style.pointerEvents = 'none';
     $("square4").style.pointerEvents = 'none', $("square5").style.pointerEvents = 'none', $("square6").style.pointerEvents = 'none';
     $("square7").style.pointerEvents = 'none', $("square8").style.pointerEvents = 'none', $("square9").style.pointerEvents = 'none';
 }
 
-function enableallCells(){
+function enableAllCells(){
     $("square1").style.pointerEvents = "all"; $("square2").style.pointerEvents = "all"; $("square3").style.pointerEvents = "all"; 
     $("square4").style.pointerEvents = "all"; $("square5").style.pointerEvents = "all"; $("square6").style.pointerEvents = "all"; 
     $("square7").style.pointerEvents = "all"; $("square8").style.pointerEvents = "all"; $("square9").style.pointerEvents = "all"; 
@@ -175,7 +175,7 @@ function enableallCells(){
 
 var startGame = function(){ 
     isGameOver = false;
-    enableallCells(); checkGameMode();
+    enableAllCells(); checkGameMode();
     $('hours').innerHTML = '00:'; $('mins').innerHTML = '00:'; $('secs').innerHTML = "00";
     startTimer();
 }
@@ -183,6 +183,7 @@ var startGame = function(){
 var reset = function(){
     $("playAgainBtn").style.display = 'none'; 
     $("playerTurn").style.display = 'initial';
+    isGameWon = false, isGameDrawn = false;
 
     // clear cell innerHTML
     $("square1").innerHTML = "", $("square2").innerHTML = "", $("square3").innerHTML = "";
@@ -190,7 +191,7 @@ var reset = function(){
     $("square7").innerHTML = ""; $("square8").innerHTML = "", $("square9").innerHTML = "";
 
     //enable cell pointerEvents
-    enableallCells();
+    enableAllCells();
     
     //resetTimer
     isGameOver = false; resetTime = true;
@@ -234,7 +235,7 @@ function startTimer(){
 }
 
 window.onload = function(){
-    disableallCells(); printOnlyX();
+    disableAllCells(); printOnlyX();
     $("startBtn").onclick = startGame;
     $("startBtn").ondblclick = reset;
     $("playAgainBtn").onclick = reset;

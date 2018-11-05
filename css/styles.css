@@ -8,6 +8,12 @@ body{
 header{
     margin-top: 50px;
 }
+#gamesPlayed{
+    float: left;
+    margin-top: -54px;
+    padding-left: 9px;
+    font-size: 11px;
+}
 #timer{
     float: right;
     margin-top: -54px;
@@ -20,9 +26,6 @@ input#comp.radioButton{
     margin: 0 auto;
     text-align: center;
 }
-/* .controls{
-    margin-top: 0%;
-} */
 .radioButton{
     margin-left: 40px;
 }

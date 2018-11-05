@@ -6,7 +6,7 @@ var count = 0;
 var pvpTurn = Math.floor(Math.random() * (1 - 0 + 1)) + 0;
 var pvcTurn = Math.floor(Math.random() * (1 - 0 + 1)) + 0;
 var whoPlaying = "", timex = "", pvp = false, pvc = false, resetTime = false;
-var isGameWon = false, isGameDrawn = false, isGameOver = false;
+var isGameWon = false, isGameDrawn = false, isGameOver = false, count = 0;
 
 var $ = function(id){
     return document.getElementById(id);
@@ -177,13 +177,15 @@ var startGame = function(){
     isGameOver = false;
     enableAllCells(); checkGameMode();
     $('hours').innerHTML = '00:'; $('mins').innerHTML = '00:'; $('secs').innerHTML = "00";
+    $("gamesPlayed").innerHTML = "Number of Games played: " + count;
     startTimer();
 }
 
 var reset = function(){
     $("playAgainBtn").style.display = 'none'; 
     $("playerTurn").style.display = 'initial';
-    isGameWon = false, isGameDrawn = false;
+    isGameWon = false, isGameDrawn = false, count++;
+    $("gamesPlayed").innerHTML = "Number of Games played: " + count;
 
     // clear cell innerHTML
     $("square1").innerHTML = "", $("square2").innerHTML = "", $("square3").innerHTML = "";

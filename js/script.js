@@ -85,23 +85,23 @@ function checkForEmptyCells(){
     var sqr7 = $("square7").innerHTML, sqr8 = $("square8").innerHTML, sqr9 = $("square9").innerHTML;
 
     if(rNmumber == 1 && sqr1 == ""){
-        $("square1").innerHTML = "0"; checkForWinner(); $("square1").pointerEvents = 'none';
+        $("square1").innerHTML = "O"; checkForWinner(); $("square1").pointerEvents = 'none';
     } else if(rNmumber == 2 && sqr2 == ""){
-        $("square2").innerHTML = "0"; checkForWinner(); $("square2").pointerEvents = 'none';
+        $("square2").innerHTML = "O"; checkForWinner(); $("square2").pointerEvents = 'none';
     } else if(rNmumber == 3 && sqr3 == ""){
-        $("square3").innerHTML = "0"; checkForWinner(); $("square3").pointerEvents = 'none';
+        $("square3").innerHTML = "O"; checkForWinner(); $("square3").pointerEvents = 'none';
     } else if(rNmumber == 4 && sqr4 == ""){
-        $("square4").innerHTML = "0"; checkForWinner(); $("square4").pointerEvents = 'none';
+        $("square4").innerHTML = "O"; checkForWinner(); $("square4").pointerEvents = 'none';
     } else if(rNmumber == 5 && sqr5 == ""){
-        $("square5").innerHTML = "0"; checkForWinner(); $("square5").pointerEvents = 'none';
+        $("square5").innerHTML = "O"; checkForWinner(); $("square5").pointerEvents = 'none';
     } else if(rNmumber == 6 && sqr6 == ""){
-        $("square6").innerHTML = "0"; checkForWinner(); $("square6").pointerEvents = 'none';
+        $("square6").innerHTML = "O"; checkForWinner(); $("square6").pointerEvents = 'none';
     } else if(rNmumber == 7 && sqr7 == ""){
-        $("square7").innerHTML = "0"; checkForWinner(); $("square7").pointerEvents = 'none';
+        $("square7").innerHTML = "O"; checkForWinner(); $("square7").pointerEvents = 'none';
     } else if(rNmumber == 8 && sqr8 == ""){
-        $("square8").innerHTML = "0"; checkForWinner(); $("square8").pointerEvents = 'none';
+        $("square8").innerHTML = "O"; checkForWinner(); $("square8").pointerEvents = 'none';
     } else if(rNmumber == 9 && sqr9 == ""){
-        $("square9").innerHTML = "0"; checkForWinner(); $("square9").pointerEvents = 'none';
+        $("square9").innerHTML = "O"; checkForWinner(); $("square9").pointerEvents = 'none';
     } else{ checkForEmptyCells();}
     
     // checkForWinner();
